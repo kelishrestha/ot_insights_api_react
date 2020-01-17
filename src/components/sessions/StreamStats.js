@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
+import round from './../charts/helpers/round';
 import Loading from './../../components/Loading';
 import ErrorMessage from './../../components/ErrorMessage';
 
@@ -44,17 +45,17 @@ class StreamStats extends Component {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">Total Published Minutes</h5>
-                  <h2>
-                    {publisherMinutes}
-                  </h2>
+                  <h1>
+                    {round(publisherMinutes, 2)}
+                  </h1>
                 </div>
               </div>
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">Total Subscribed Minutes</h5>
-                  <h2>
-                    {subscriberMinutes}
-                  </h2>
+                  <h1>
+                    {round(subscriberMinutes, 2)}
+                  </h1>
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ class ChartContainer extends Component {
   render() {
     return (
       <div className="card m-3" id={ this.props.scrollId }>
-        <div className="card-header">
+        <div className="card-header font-weight-bold">
           <i className={`fas fa-chart-${this.props.titleIcon}`}></i> {
             this.props.title
           }

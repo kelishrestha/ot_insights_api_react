@@ -75,10 +75,12 @@ class SessionReport extends React.Component {
             <div className="col-10 pr-0">
               <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
                 <div id="totalUnits">
-                  <h2 className="text-capitalize">Total Units</h2>
+                  <h2 className="text-capitalize my-4 border-bottom">Total Units</h2>
                   <StreamStats projectId={projectId} sessionId={sessionId}/>
                 </div>
                 <div id="quality-stats">
+                  <h2 className="text-capitalize my-4 border-bottom">statistics</h2>
+
                   <ChartContainer titleIcon="area" title="Browser Stats" scrollId="stats-by-browser">
                     <BrowserStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
@@ -96,6 +98,7 @@ class SessionReport extends React.Component {
                   </ChartContainer>
                 </div>
                 <div id="publisher-stats">
+                  <h2 className="text-capitalize my-4 border-bottom">publisher details</h2>
                   <ChartContainer titleIcon="area" title="Publisher Video Bitrate Stats" scrollId="publisher-stats-by-video-bitrate">
                     <PublisherVideoBitRateStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
@@ -116,6 +119,7 @@ class SessionReport extends React.Component {
                   </ChartContainer>
                 </div>
                 <div id="subscriber-stats">
+                  <h2 className="text-capitalize my-4 border-bottom">subscriber details</h2>
                   <ChartContainer titleIcon="area" title="Subscriber Video Bitrate Stats" scrollId="subscriber-stats-by-video-bitrate">
                     <SubscriberVideoBitRateStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
@@ -137,7 +141,7 @@ class SessionReport extends React.Component {
                   </ChartContainer>
                 </div>
                 <div id="connection-details" className="m-3">
-                  <h2 className="text-capitalize">Connections Stats</h2>
+                  <h2 className="text-capitalize my-4 border-bottom">Connections details</h2>
                   <ConnectionStreamsTable projectId={projectId} sessionId={sessionId} scrollId="connection-stats"/>
                 </div>
               </div>
