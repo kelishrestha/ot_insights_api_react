@@ -108,7 +108,7 @@ class PublisherVideoPacketLossStats extends Component {
           const resources = get(data, 'project.sessionData.sessions.resources', []);
           const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
           const streamChartData = this.getSubscribedData(meetingResources);
-          console.log(meetingResources)
+
           return (
             <Line
               data={{
