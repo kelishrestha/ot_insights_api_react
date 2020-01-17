@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Line } from 'react-chartjs-3';
+import { Chart } from "react-google-charts";
 import { get } from 'lodash';
 import moment from 'moment';
+import round from './helpers/round';
 import Loading from './../../components/Loading';
 import ErrorMessage from './../../components/ErrorMessage';
 
@@ -34,6 +35,27 @@ class UsageByLocation extends Component {
     }
   }
 
+  getSubscribedData(resources){
+    let distinctCountries = resources.filter(x => x.country != null);
+    var allCountryData = [];
+    var countryData = {};
+    distinctCountries.forEach(item => {
+      countryData[item.country] = countryData[item.country] || 0;
+      var subscribedMinutes = item.usage == null ? 0 : item.usage.streamedSubscribedMinutes;
+      countryData[item.country] = round((countryData[item.country] + subscribedMinutes), 4);
+    });
+    // Compiling null data
+    var otherCountriesData = resources.filter(x => x.country == null);
+    var otherData = otherCountriesData.map(item => get(item, 'usage.streamedSubscribedMinutes', 0));
+    let numOr0 = n => isNaN(n) ? 0 : n;
+    var otherValues = otherData.reduce((a, b) => numOr0(a) + numOr0(b))
+    if (otherValues > 0){
+      countryData['Others'] = otherValues
+    }
+    allCountryData = Object.entries(countryData);
+    return allCountryData;
+  }
+
   render() {
     return (
       <Query query={this.state.query}>
@@ -41,37 +63,18 @@ class UsageByLocation extends Component {
           if (loading) return <Loading />;
           if (error) return <ErrorMessage error={error.message} />;
           const resources = get(data, 'project.projectData.resources', []);
+          const labels = ['Country', 'Subscribed Usage(Mins)'];
+          var countryData = [labels];
+          var subscribedCountryData = this.getSubscribedData(resources);
+          countryData = countryData.concat(subscribedCountryData);
           return (
-            <Line data={{
-              labels: resources.map(item => moment(item.intervalStart).format('MMM DD')),
-              datasets: [
-                {
-                  label: 'Streamed Published Minutes',
-                  backgroundColor: 'rgba(75,192,192,0.4)',
-                  data: resources.map(item => get(item, 'usage.streamedPublishedMinutes', 0)),
-                },
-                {
-                  label: 'Streamed Subscribed Minutes',
-                  backgroundColor: 'rgba(75,75,192,0.4)',
-                  data: resources.map(item => get(item, 'usage.streamedSubscribedMinutes', 0)),
-                },
-                {
-                  label: 'Individual Archive Minutes',
-                  backgroundColor: '#99004C',
-                  data: resources.map(item => get(item, 'usage.individualArchiveMinutes', 0)),
-                },
-                {
-                  label: 'Broadcast Composed Minutes',
-                  backgroundColor: '#CC6600',
-                  data: resources.map(item => get(item, 'usage.sdBroadcastComposedMinutes', 0)),
-                },
-                {
-                  label: 'SIP User Minutes',
-                  backgroundColor: '#3333FF',
-                  data: resources.map(item => get(item, 'usage.sipUserMinutes', 0)),
-                },
-              ],
-            }} />
+            <Chart
+              chartType="GeoChart"
+              data={countryData}
+              width="100%"
+              height="400px"
+              legendToggle
+            />
           );
         }}
       </Query>

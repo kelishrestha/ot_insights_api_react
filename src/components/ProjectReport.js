@@ -8,7 +8,16 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import ChartContainer from './../components/ChartContainer';
 import UsageByDay from './../components/charts/UsageByDay';
+import UsageByLocation from './../components/charts/UsageByLocation';
+import UsageByBrowser from './../components/charts/UsageByBrowser';
+import UsageByBrowserVersion from './../components/charts/UsageByBrowserVersion';
+import UsageBySdkVersion from './../components/charts/UsageBySdkVersion';
+import UsageBySdkDistribution from './../components/charts/UsageBySdkDistribution';
+import LatencyByCountry from './../components/charts/LatencyByCountry';
+import FailuresBySdkType from './../components/charts/FailuresBySdkType';
 import ProjectSideBar from './ProjectSideBar';
+import FailuresByBrowser from './charts/FailuresByBrowser';
+import BitrateByCountry from './charts/BitrateByCountry';
 
 class ProjectReport extends React.Component {
   constructor(props) {
@@ -50,20 +59,54 @@ class ProjectReport extends React.Component {
       <ApolloProvider client={client}>
         <div className="container-fluid p-0">
           <NavBar title="Project Dashboard" type="project" typeId={projectId}/>
-          <div className="row">
-            <div className="col">
-              <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-                <ChartContainer titleIcon="area" title="Usage by Day" scrollId="usage-by-day">
-                  <UsageByDay projectId={projectId}/>
-                </ChartContainer>
-
-                <ChartContainer titleIcon="area" title="Usage by Day" scrollId="usage-by-location">
-                  <UsageByDay projectId={projectId}/>
-                </ChartContainer>
-              </div>
+          <div className="row my-5 mx-0">
+            <div className="col-2 p-0">
+              <ProjectSideBar type="project" typeId={projectId}/>
             </div>
-            <div className="col-2">
-              <ProjectSideBar />
+            <div className="col pr-0">
+              <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+                <div id="usage">
+                  <ChartContainer titleIcon="area" title="Usage by Day" scrollId="usage-by-day">
+                    <UsageByDay projectId={projectId}/>
+                  </ChartContainer>
+
+                  <ChartContainer titleIcon="area" title="Usage by Location" scrollId="usage-by-location">
+                    <UsageByLocation projectId={projectId}/>
+                  </ChartContainer>
+
+                  <ChartContainer titleIcon="area" title="Usage by Browser" scrollId="usage-by-browser">
+                    <UsageByBrowser projectId={projectId}/>
+                  </ChartContainer>
+
+                  <ChartContainer titleIcon="area" title="Usage by Browser Version" scrollId="usage-by-browser-version">
+                    <UsageByBrowserVersion projectId={projectId}/>
+                  </ChartContainer>
+
+                  <ChartContainer titleIcon="area" title="Usage by SDK Version" scrollId="usage-by-sdk-version">
+                    <UsageBySdkVersion projectId={projectId}/>
+                  </ChartContainer>
+
+                  <ChartContainer titleIcon="area" title="Usage by SDK Distribution" scrollId="usage-by-sdk-distribution">
+                    <UsageBySdkDistribution projectId={projectId}/>
+                  </ChartContainer>
+                </div>
+                <div id="quality-and-failures">
+                  <ChartContainer titleIcon="area" title="Failures by SDK Type" scrollId="failures-by-sdktype">
+                    <FailuresBySdkType projectId={projectId}/>
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Failures by Browser" scrollId="failures-by-browser">
+                    <FailuresByBrowser projectId={projectId}/>
+                  </ChartContainer>
+                </div>
+                <div id="speed">
+                  <ChartContainer titleIcon="area" title="Latency By Country" scrollId="latency-by-country">
+                    <LatencyByCountry projectId={projectId}/>
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Bitrate By Country" scrollId="bitrate-by-country">
+                    <BitrateByCountry projectId={projectId}/>
+                  </ChartContainer>
+                </div>
+              </div>
             </div>
           </div>
         </div>

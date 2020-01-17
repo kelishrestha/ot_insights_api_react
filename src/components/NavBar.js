@@ -1,5 +1,4 @@
 import React from 'react';
-import ShowId from './ShowId';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -8,12 +7,10 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-info">
+      <nav className="navbar navbar-dark bg-info fixed-top">
         <span className="navbar-brand">{this.props.title}</span>
-        <ShowId type={this.props.type} typeId={this.props.typeId} />
-
         <form className="form-inline">
-          <button className="btn btn-sm btn-outline-light" type="button">Go to HomePage</button>
+          <a className="btn btn-sm btn-outline-light" type="button" href="/">Go to HomePage</a>
         </form>
       </nav>
     );

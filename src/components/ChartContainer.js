@@ -9,7 +9,7 @@ class ChartContainer extends Component {
             this.props.title
           }
         </div>
-        <div className="card-body">
+        <div className="card-body w-95">
           {this.props.children}
         </div>
       </div>

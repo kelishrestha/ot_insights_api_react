@@ -7,7 +7,21 @@ class ShowId extends React.Component {
 
   render() {
     return (
-      <span className="text-uppercase">{this.props.type} ID: {this.props.typeId}</span>
+      <div className="ml-3">
+        <div>
+          <span className="text-uppercase">
+            {this.props.type} ID
+          </span>
+          <h2>{this.props.typeId}</h2>
+        </div>
+        <div>
+          <span className="text-uppercase">
+            View Type
+          </span>
+          <h2 className="text-capitalize">{this.props.type} Level</h2>
+        </div>
+        <hr/>
+      </div>
     );
   }
 }
