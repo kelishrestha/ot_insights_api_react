@@ -36,6 +36,10 @@ class SessionSideBar extends React.Component {
             <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-audio-packet-loss">Audio Packet Loss Stats</a>
             <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-audio-latency">Audio Latency Stats</a>
           </nav>
+          <a className="nav-link font-weight-bold" href="#connection-details">Connection Details</a>
+            <a className="nav-link ml-3 py-0" href="#connection-stats">Publishers Count</a>
+          <nav className="nav nav-pills flex-column">
+          </nav>
         </nav>
       </nav>
     );

@@ -26,6 +26,7 @@ import PublisherAudioLatencyStats from './sessions/publishers/PublisherAudioLate
 import SubscriberAudioBitRateStats from './sessions/subscribers/SubscriberAudioBitRateStats';
 import SubscriberAudioPacketLossStats from './sessions/subscribers/SubscriberAudioPacketLossStats';
 import SubscriberAudioLatencyStats from './sessions/subscribers/SubscriberAudioLatencyStats';
+import ConnectionStreamsTable from './sessions/connections/ConnectionStreamsTable';
 
 class SessionReport extends React.Component {
   constructor(props) {
@@ -135,7 +136,9 @@ class SessionReport extends React.Component {
                     <SubscriberAudioLatencyStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
                 </div>
-                <div id="speed">
+                <div id="connection-details" className="m-3">
+                  <h2 className="text-capitalize">Connections Stats</h2>
+                  <ConnectionStreamsTable projectId={projectId} sessionId={sessionId} scrollId="connection-stats"/>
                 </div>
               </div>
             </div>
