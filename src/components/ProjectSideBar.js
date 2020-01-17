@@ -8,7 +8,7 @@ class ProjectSideBar extends React.Component {
 
   render() {
     return (
-      <nav id="navbar-example3" className="navbar navbar-light bg-light position-fixed h-100 w-100">
+      <nav id="navbar-example3" className="navbar navbar-light bg-light position-fixed h-100">
         <nav className="nav nav-pills flex-column">
           <ShowId type={this.props.type} typeId={this.props.typeId} />
           <a className="nav-link font-weight-bold" href="#usage">Usage</a>

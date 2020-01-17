@@ -37,6 +37,9 @@
   }
 }
 
+.header-spacer {
+  margin-top: 5rem !important;
+}
 
 .w-95 {
   width: 95% !important;

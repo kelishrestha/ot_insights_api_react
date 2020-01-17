@@ -6,6 +6,9 @@ class OpentokForm extends React.Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeQueryType = this.changeQueryType.bind(this);
+    localStorage.removeItem('project');
+    localStorage.removeItem('session');
+
     this.state = {
       queryType: 'project',
       sessionIdDisable: true

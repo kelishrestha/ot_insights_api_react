@@ -58,8 +58,8 @@ class ProjectReport extends React.Component {
     return (
       <ApolloProvider client={client}>
         <div className="container-fluid p-0">
-          <NavBar title="Project Dashboard" type="project" typeId={projectId}/>
-          <div className="row my-5 mx-0">
+          <NavBar title="Project Dashboard" type="project" projectId={projectId}/>
+          <div className="row my-5 mx-0 header-spacer">
             <div className="col-2 p-0">
               <ProjectSideBar type="project" typeId={projectId}/>
             </div>
