@@ -17,6 +17,15 @@ import SdkTypeStats from './sessions/SdkTypeStats';
 import SdkVersionStats from './sessions/SdkVersionStats';
 import PublisherVideoPacketLossStats from './sessions/publishers/PublisherVideoPacketLossStats';
 import PublisherVideoLatencyStats from './sessions/publishers/PublisherVideoLatencyStats';
+import SubscriberVideoBitRateStats from './sessions/subscribers/SubscriberVideoBitRateStats';
+import SubscriberVideoPacketLossStats from './sessions/subscribers/SubscriberVideoPacketLossStats';
+import SubscriberVideoLatencyStats from './sessions/subscribers/SubscriberVideoLatencyStats';
+import PublisherAudioBitRateStats from './sessions/publishers/PublisherAudioBitRateStats';
+import PublisherAudioPacketLossStats from './sessions/publishers/PublisherAudioPacketLossStats';
+import PublisherAudioLatencyStats from './sessions/publishers/PublisherAudioLatencyStats';
+import SubscriberAudioBitRateStats from './sessions/subscribers/SubscriberAudioBitRateStats';
+import SubscriberAudioPacketLossStats from './sessions/subscribers/SubscriberAudioPacketLossStats';
+import SubscriberAudioLatencyStats from './sessions/subscribers/SubscriberAudioLatencyStats';
 
 class SessionReport extends React.Component {
   constructor(props) {
@@ -86,14 +95,44 @@ class SessionReport extends React.Component {
                   </ChartContainer>
                 </div>
                 <div id="publisher-stats">
-                  <ChartContainer titleIcon="area" title="Video Bitrate Stats" scrollId="publisher-stats-by-streams">
+                  <ChartContainer titleIcon="area" title="Publisher Video Bitrate Stats" scrollId="publisher-stats-by-video-bitrate">
                     <PublisherVideoBitRateStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
-                  <ChartContainer titleIcon="area" title="Video Packet Loss Stats" scrollId="publisher-stats-by-packet-loss">
+                  <ChartContainer titleIcon="area" title="Publisher Video Packet Loss Stats" scrollId="publisher-stats-by-video-packet-loss">
                     <PublisherVideoPacketLossStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
-                  <ChartContainer titleIcon="area" title="Video Latency Stats" scrollId="publisher-stats-by-latency">
+                  <ChartContainer titleIcon="area" title="Publisher Video Latency Stats" scrollId="publisher-stats-by-video-latency">
                     <PublisherVideoLatencyStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Publisher Audio Bitrate Stats" scrollId="publisher-stats-by-audio-bitrate">
+                    <PublisherAudioBitRateStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Publisher Audio Packet Loss Stats" scrollId="publisher-stats-by-audio-packet-loss">
+                    <PublisherAudioPacketLossStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Publisher Audio Latency Stats" scrollId="publisher-stats-by-audio-latency">
+                    <PublisherAudioLatencyStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                </div>
+                <div id="subscriber-stats">
+                  <ChartContainer titleIcon="area" title="Subscriber Video Bitrate Stats" scrollId="subscriber-stats-by-video-bitrate">
+                    <SubscriberVideoBitRateStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Subscriber Video Packet Loss Stats" scrollId="subscriber-stats-by-video-packet-loss">
+                    <SubscriberVideoPacketLossStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Subscriber Video Latency Stats" scrollId="subscriber-stats-by-video-latency">
+                    <SubscriberVideoLatencyStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+
+                  <ChartContainer titleIcon="area" title="Subscriber Audio Bitrate Stats" scrollId="subscriber-stats-by-audio-bitrate">
+                    <SubscriberAudioBitRateStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Subscriber Audio Packet Loss Stats" scrollId="subscriber-stats-by-audio-packet-loss">
+                    <SubscriberAudioPacketLossStats projectId={projectId} sessionId={sessionId} />
+                  </ChartContainer>
+                  <ChartContainer titleIcon="area" title="Subscriber Audio Latency Stats" scrollId="subscriber-stats-by-audio-latency">
+                    <SubscriberAudioLatencyStats projectId={projectId} sessionId={sessionId} />
                   </ChartContainer>
                 </div>
                 <div id="speed">
