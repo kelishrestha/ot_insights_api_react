@@ -1,7 +1,5 @@
 import React from 'react';
 import logo from './../logo.svg';
-import ProjectReport from './ProjectReport';
-import SessionReport from './SessionReport';
 
 class OpentokForm extends React.Component {
   constructor() {
@@ -17,13 +15,14 @@ class OpentokForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     var formData = Array.prototype.slice.call(event.target).filter(el => el.name).reduce((form, el) => ({...form,[el.name]: el.value,}), {})
-    // TODO: Submit data to another component.
     if(formData['query_type'] === 'project'){
       // Submit to ProjectReport
-      // <ProjectReport />
+      localStorage.setItem('project', JSON.stringify(formData))
+      this.props.history.push("/project")
     }else{
-      // Submit to SessionReport
-      // <SessionReport />
+      // Submit to SessionReport`
+      localStorage.setItem('session', JSON.stringify(formData))
+      this.props.history.push("/session")
     }
   }
 
