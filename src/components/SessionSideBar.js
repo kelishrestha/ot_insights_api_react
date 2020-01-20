@@ -29,9 +29,9 @@ class SessionSideBar extends React.Component {
           </nav>
           <a className="nav-link font-weight-bold" href="#subscriber-stats">Subscriber Details</a>
           <nav className="nav nav-pills flex-column">
-            <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-streams">Video Bitrate Stats</a>
-            <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-packet-loss">Video Packet Loss Stats</a>
-            <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-latency">Video Latency Stats</a>
+            <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-video-bitrate">Video Bitrate Stats</a>
+            <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-video-packet-loss">Video Packet Loss Stats</a>
+            <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-video-latency">Video Latency Stats</a>
             <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-audio-bitrate">Audio Bitrate Stats</a>
             <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-audio-packet-loss">Audio Packet Loss Stats</a>
             <a className="nav-link ml-3 py-0" href="#subscriber-stats-by-audio-latency">Audio Latency Stats</a>
