@@ -72,7 +72,7 @@ class SessionReport extends React.Component {
             <div className="col-2 p-0">
               <SessionSideBar type="session" projectId={projectId} sessionId={sessionId}/>
             </div>
-            <div className="col-10 pr-0">
+            <div className="col-10 pr-0 scroll-element">
               <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
                 <div id="totalUnits">
                   <h2 className="text-capitalize my-4 border-bottom">Total Units</h2>
