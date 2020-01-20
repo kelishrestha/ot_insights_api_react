@@ -1,5 +1,4 @@
 import React from 'react';
-import ShowId from './ShowId';
 
 class ProjectSideBar extends React.Component {
   constructor(props) {
@@ -10,7 +9,6 @@ class ProjectSideBar extends React.Component {
     return (
       <nav id="navbar-example3" className="navbar navbar-light bg-light position-fixed h-100">
         <nav className="nav nav-pills flex-column">
-          <ShowId type={this.props.type} typeId={this.props.typeId} />
           <a className="nav-link font-weight-bold" href="#usage">Usage</a>
           <nav className="nav nav-pills flex-column">
             <a className="nav-link ml-3 my-1" href="#usage-by-day">By Day</a>
