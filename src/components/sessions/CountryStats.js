@@ -5,6 +5,7 @@ import { Chart } from "react-google-charts";
 import { get } from 'lodash';
 import Loading from './../../components/Loading';
 import ErrorMessage from './../../components/ErrorMessage';
+import EmptyGraph from '../EmptyGraph';
 
 class CountryStats extends Component {
   constructor(props){
@@ -56,21 +57,26 @@ class CountryStats extends Component {
           if (loading) return <Loading />;
           if (error) return <ErrorMessage error={error.message} />;
           const resources = get(data, 'project.sessionData.sessions.resources', []);
-          const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
-          const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
-          const labels = ['Country', 'No. of Connections'];
-          var countryData = [labels];
-          const chartData = this.getSubscribedData(connectionResources);
-          countryData = countryData.concat(chartData);
-          return (
-            <Chart
-            chartType="GeoChart"
-            data={countryData}
-            width="100%"
-            height="400px"
-            legendToggle
-          />
-          );
+          let graph;
+          if (resources.length > 0){
+            const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
+            const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
+            const labels = ['Country', 'No. of Connections'];
+            var countryData = [labels];
+            const chartData = this.getSubscribedData(connectionResources);
+            countryData = countryData.concat(chartData);
+            graph = <Chart
+              chartType="GeoChart"
+              data={countryData}
+              width="100%"
+              height="400px"
+              legendToggle
+            />;
+          }else{
+            graph = <EmptyGraph />;
+          }
+
+          return graph;
         }}
       </Query>
     );

@@ -115,14 +115,20 @@ class ConnectionStreamsTable extends Component {
   createTable = (connectionData) => {
     let table = []
     // Outer loop to create parent
-    for (let i = 0; i < connectionData.length; i++) {
-      let children = []
-      //Inner loop to create children
-      for (let j = 0; j < connectionData[i].length; j++) {
-        children.push(<td key={`${j+1}`}>{`${connectionData[i][j]}`}</td>)
+    if (connectionData.length > 0){
+      for (let i = 0; i < connectionData.length; i++) {
+        let children = []
+        //Inner loop to create children
+        for (let j = 0; j < connectionData[i].length; j++) {
+          children.push(<td key={`${j+1}`}>{`${connectionData[i][j]}`}</td>)
+        }
+        //Create the parent and add the children
+        table.push(<tr key={`${i+1}`}>{children}</tr>)
       }
-      //Create the parent and add the children
-      table.push(<tr key={`${i+1}`}>{children}</tr>)
+    }else{
+      let children = []
+      children.push(<td key="No values" colSpan="3" className="text-center">No connection data available from source.</td>);
+      table.push(<tr key="No rows">{children}</tr>)
     }
     return table
   }
@@ -134,10 +140,12 @@ class ConnectionStreamsTable extends Component {
           if (loading) return <Loading />;
           if (error) return <ErrorMessage error={error.message} />;
           const resources = get(data, 'project.sessionData.sessions.resources', []);
-          const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
-          const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
-          const connectionData = this.getSubscribedData(connectionResources);
-
+          var connectionData = [];
+          if (resources.length > 0){
+            const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
+            const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
+            connectionData = this.getSubscribedData(connectionResources);
+          }
           return (
             <table className="table table-bordered">
               <thead>

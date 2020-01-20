@@ -40,9 +40,10 @@ class UsageByBrowserVersion extends Component {
     let distinctBrowsers = resources.filter(x => x.browserVersion != null);
     var browserData = {};
     distinctBrowsers.forEach(item => {
-      browserData[item.browserVersion] = browserData[item.browserVersion] || 0;
+      var propName = item.browser + item.browserVersion;
+      browserData[propName] = browserData[propName] || 0;
       var subscribedMinutes = item.usage == null ? 0 : item.usage.streamedSubscribedMinutes;
-      browserData[item.browserVersion] = round((browserData[item.browserVersion] + subscribedMinutes), 2);
+      browserData[propName] = round((browserData[propName] + subscribedMinutes), 2);
     });
     // Compiling null data
     var otherBrowsersData = resources.filter(x => x.browserVersion == null);;

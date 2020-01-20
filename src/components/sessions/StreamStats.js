@@ -46,7 +46,7 @@ class StreamStats extends Component {
                 <div className="card-body">
                   <h5 className="card-title">Total Published Minutes</h5>
                   <h1>
-                    {round(publisherMinutes, 2)}
+                    {(round(publisherMinutes, 2).toString()=== 'NaN' ? 'N/A' :round(publisherMinutes, 2))}
                   </h1>
                 </div>
               </div>
@@ -54,7 +54,7 @@ class StreamStats extends Component {
                 <div className="card-body">
                   <h5 className="card-title">Total Subscribed Minutes</h5>
                   <h1>
-                    {round(subscriberMinutes, 2)}
+                    {(round(subscriberMinutes, 2).toString()=== 'NaN' ? 'N/A' :round(subscriberMinutes, 2))}
                   </h1>
                 </div>
               </div>

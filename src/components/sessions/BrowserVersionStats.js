@@ -5,6 +5,7 @@ import { Pie } from 'react-chartjs-3';
 import { get } from 'lodash';
 import Loading from './../../components/Loading';
 import ErrorMessage from './../../components/ErrorMessage';
+import EmptyGraph from '../EmptyGraph';
 
 class BrowserVersionStats extends Component {
   constructor(props){
@@ -23,6 +24,7 @@ class BrowserVersionStats extends Component {
                     totalCount
                     maxConcurrent
                     resources {
+                      browser
                       browserVersion
                     }
                   }
@@ -42,10 +44,12 @@ class BrowserVersionStats extends Component {
   getSubscribedData(resources){
     let distinctData = resources.filter(x => x.browserVersion != null);
     var chartData = {};
+
     distinctData.forEach(function (obj) {
-      var propName = obj.browserVersion;
+      var propName = obj.browser + obj.browserVersion;
       chartData[propName] = chartData[propName] ? chartData[propName] + 1 : 1;
     });
+
     return {
       labels: Object.keys(chartData),
       chartData: Object.values(chartData)
@@ -59,12 +63,12 @@ class BrowserVersionStats extends Component {
           if (loading) return <Loading />;
           if (error) return <ErrorMessage error={error.message} />;
           const resources = get(data, 'project.sessionData.sessions.resources', []);
-          const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
-          const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
-          const {labels, chartData} = this.getSubscribedData(connectionResources);
-
-          return (
-            <Pie data={{
+          let graph;
+          if (resources.length > 0){
+            const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
+            const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
+            const {labels, chartData} = this.getSubscribedData(connectionResources);
+            graph = <Pie data={{
               labels: labels,
               datasets: [{
                 data: chartData,
@@ -92,7 +96,11 @@ class BrowserVersionStats extends Component {
                 ],
               }],
             }} />
-          );
+          }else{
+            graph = <EmptyGraph />;
+          }
+
+          return graph;
         }}
       </Query>
     );

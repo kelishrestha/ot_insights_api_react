@@ -5,6 +5,7 @@ import { Line } from 'react-chartjs-3';
 import { get } from 'lodash';
 import Loading from '../../Loading';
 import ErrorMessage from '../../ErrorMessage';
+import EmptyGraph from '../../EmptyGraph';
 
 class PublisherVideoBitRateStats extends Component {
   constructor(props){
@@ -107,10 +108,11 @@ class PublisherVideoBitRateStats extends Component {
           if (loading) return <Loading />;
           if (error) return <ErrorMessage error={error.message} />;
           const resources = get(data, 'project.sessionData.sessions.resources', []);
-          const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
-          const streamChartData = this.getSubscribedData(meetingResources);
-          return (
-            <Line
+          let graph;
+          if (resources.length > 0){
+            const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
+            const streamChartData = this.getSubscribedData(meetingResources);
+            graph = <Line
               data={{
                 datasets: streamChartData
               }}
@@ -135,7 +137,12 @@ class PublisherVideoBitRateStats extends Component {
                 }}
               }
             />
-          );
+
+          }else{
+            graph = <EmptyGraph />;
+          }
+
+          return graph;
         }}
       </Query>
     );

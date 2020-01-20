@@ -5,6 +5,7 @@ import { Pie } from 'react-chartjs-3';
 import { get } from 'lodash';
 import Loading from './../../components/Loading';
 import ErrorMessage from './../../components/ErrorMessage';
+import EmptyGraph from '../EmptyGraph';
 
 class SdkTypeStats extends Component {
   constructor(props){
@@ -59,12 +60,12 @@ class SdkTypeStats extends Component {
           if (loading) return <Loading />;
           if (error) return <ErrorMessage error={error.message} />;
           const resources = get(data, 'project.sessionData.sessions.resources', []);
-          const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
-          const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
-          const {labels, chartData} = this.getSubscribedData(connectionResources);
-
-          return (
-            <Pie data={{
+          let graph;
+          if (resources.length > 0){
+            const meetingResources = resources.map(item => get(item, 'meetings.resources', []))[0];
+            const connectionResources = meetingResources.map(item => get(item, 'connections.resources', []))[0];
+            const {labels, chartData} = this.getSubscribedData(connectionResources);
+            graph = <Pie data={{
               labels: labels,
               datasets: [{
                 data: chartData,
@@ -92,7 +93,11 @@ class SdkTypeStats extends Component {
                 ],
               }],
             }} />
-          );
+          }else{
+            graph = <EmptyGraph />;
+          }
+
+          return graph;
         }}
       </Query>
     );
