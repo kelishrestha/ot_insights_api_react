@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.header-spacer {
+  margin-top: 3.5rem !important;
+}
+
+.w-95 {
+  width: 95% !important;
+}
+
+.scroll-element {
+  scroll-margin: 4.8em;
+}
