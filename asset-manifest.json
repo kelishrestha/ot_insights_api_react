@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ot_insights_api_react/static/css/main.520a39f6.chunk.css",
-    "main.js": "/ot_insights_api_react/static/js/main.0d3019ee.chunk.js",
-    "main.js.map": "/ot_insights_api_react/static/js/main.0d3019ee.chunk.js.map",
+    "main.js": "/ot_insights_api_react/static/js/main.1ca0841c.chunk.js",
+    "main.js.map": "/ot_insights_api_react/static/js/main.1ca0841c.chunk.js.map",
     "runtime-main.js": "/ot_insights_api_react/static/js/runtime-main.f6030cd9.js",
     "runtime-main.js.map": "/ot_insights_api_react/static/js/runtime-main.f6030cd9.js.map",
     "static/css/2.67123b20.chunk.css": "/ot_insights_api_react/static/css/2.67123b20.chunk.css",
     "static/js/2.f34a2d97.chunk.js": "/ot_insights_api_react/static/js/2.f34a2d97.chunk.js",
     "static/js/2.f34a2d97.chunk.js.map": "/ot_insights_api_react/static/js/2.f34a2d97.chunk.js.map",
     "index.html": "/ot_insights_api_react/index.html",
-    "precache-manifest.cbc4853407d01ff69a24fccc5965927e.js": "/ot_insights_api_react/precache-manifest.cbc4853407d01ff69a24fccc5965927e.js",
+    "precache-manifest.25f71270405c30578081240df61ee203.js": "/ot_insights_api_react/precache-manifest.25f71270405c30578081240df61ee203.js",
     "service-worker.js": "/ot_insights_api_react/service-worker.js",
     "static/css/2.67123b20.chunk.css.map": "/ot_insights_api_react/static/css/2.67123b20.chunk.css.map",
     "static/css/main.520a39f6.chunk.css.map": "/ot_insights_api_react/static/css/main.520a39f6.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.67123b20.chunk.css",
     "static/js/2.f34a2d97.chunk.js",
     "static/css/main.520a39f6.chunk.css",
-    "static/js/main.0d3019ee.chunk.js"
+    "static/js/main.1ca0841c.chunk.js"
   ]
 }
