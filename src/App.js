@@ -7,7 +7,7 @@ import SessionReport from './components/SessionReport';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path="/" component={OpentokForm} />
         <Route path="/project" component={ProjectReport} />
